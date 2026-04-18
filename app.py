@@ -46,7 +46,7 @@ st.markdown('<div class="main-title">🌆 Urban Growth Intelligence AI</div>', u
 st.caption("Smart analytics for city growth and real estate trends")
 
 # ---------- LOAD DATA ----------
-df = pd.read_excel("data/urban_growth_dataset.xlsx")
+df = pd.read_csv("data/urban_growth_dataset.csv")
 
 # Add state mapping
 city_state_map = {
