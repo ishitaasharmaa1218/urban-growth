@@ -1,10 +1,10 @@
+import os
+import joblib
 import pandas as pd
 from sklearn.linear_model import LinearRegression
-import joblib
-import os
 
 def train_model():
-    df = pd.read_excel("data/urban_growth_dataset.xlsx")
+    df = pd.read_csv("data/urban_growth_dataset.csv")
 
     df['growth_velocity'] = (
         df['population'] * 0.3 +
@@ -22,10 +22,13 @@ def train_model():
     os.makedirs("models", exist_ok=True)
     joblib.dump(model, "models/model.pkl")
 
-    print("Model saved successfully!")
+    return model
+
 
 def load_model():
-    return joblib.load("models/model.pkl")
+    model_path = "models/model.pkl"
 
-if __name__ == "__main__":
-    train_model()
+    if os.path.exists(model_path):
+        return joblib.load(model_path)
+    else:
+        return train_model()
